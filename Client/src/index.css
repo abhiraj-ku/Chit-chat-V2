@@ -9,9 +9,6 @@ button,
 input {
   font-family: "Josefin Sans", sans-serif;
 }
-
 body {
-  max-height: 100vh;
-  max-width: 100vw;
-  background-color: rgb(12, 0, 94);
+  overflow: none;
 }

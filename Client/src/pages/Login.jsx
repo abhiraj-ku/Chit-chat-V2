@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-// import Logo from "../assets/logo.svg";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginRoute } from "../utils/APIRoutes";
@@ -19,7 +19,8 @@ export default function Login() {
     theme: "dark",
   };
   // useEffect(() => {
-  //   if (localStorage.getItem("chit-chat-app")) {
+  //   const loggedInUser = localStorage.getItem("chit-chat-app");
+  //   if (loggedInUser) {
   //     navigate("/");
   //   }
   // }, []);
@@ -30,11 +31,8 @@ export default function Login() {
 
   const validateForm = () => {
     const { username, password } = values;
-    if (username === "") {
-      toast.error("Email and Password is required.", toastOptions);
-      return false;
-    } else if (password === "") {
-      toast.error("Email and Password is required.", toastOptions);
+    if (username === "" || password === "") {
+      toast.error("Username and Password are required.", toastOptions);
       return false;
     }
     return true;
@@ -53,7 +51,6 @@ export default function Login() {
       }
       if (data.status === true) {
         localStorage.setItem("chit-chat-app", JSON.stringify(data.user));
-
         navigate("/");
       }
     }
@@ -82,7 +79,7 @@ export default function Login() {
           />
           <button type="submit">Log In</button>
           <span>
-            Don't have an account ? <Link to="/register">Create One.</Link>
+            Dont have an account ? <Link to="/register">Create One.</Link>
           </span>
         </form>
       </FormContainer>

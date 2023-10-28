@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
@@ -18,12 +18,12 @@ export default function Login() {
     draggable: true,
     theme: "dark",
   };
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("chit-chat-app");
-  //   if (loggedInUser) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("chit-chat-user");
+    if (loggedInUser) {
+      navigate("/");
+    }
+  }, []);
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });

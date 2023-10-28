@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -49,12 +49,12 @@ function Register() {
     theme: "dark",
   };
 
-  //useEffect hook for directing to particluar users login
-  // useEffect(() => {
-  //   if (localStorage.getItem("chit-chat-user")) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  // useEffect hook for directing to particluar users login
+  useEffect(() => {
+    if (localStorage.getItem("chit-chat-user")) {
+      navigate("/");
+    }
+  }, []);
 
   //handleValidation for register button
   const handleValidation = () => {

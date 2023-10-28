@@ -50,11 +50,11 @@ function Register() {
   };
 
   // useEffect hook for directing to particluar users login
-  useEffect(() => {
-    if (localStorage.getItem("chit-chat-user")) {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("chit-chat-user")) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   //handleValidation for register button
   const handleValidation = () => {

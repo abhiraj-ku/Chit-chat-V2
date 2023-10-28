@@ -5,13 +5,14 @@ import { Buffer } from "buffer";
 import loader from "../assets/loader.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setAvatarRoute } from "../utils/APIRoutes";
+// import { useNavigate } from "react-router-dom";
 
 //function setAvatar
 export default function SetAvatar() {
   const api = `https://api.multiavatar.com`;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
   const [selectedAvatars, setSelectedAvatars] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +26,13 @@ export default function SetAvatar() {
     theme: "dark",
   };
 
+  //useEffect
+  useEffect(() => {
+    if (!localStorage.getItem("chit-chat-user")) {
+      navigate("/login");
+    }
+  }, []);
+
   //setProfile picture function
   const setProfilePicture = async () => {
     if (selectedAvatars === undefined) {
@@ -34,6 +42,7 @@ export default function SetAvatar() {
       const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
         image: avatars[selectedAvatars],
       });
+      console.log(data);
       if (data.isSet) {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;

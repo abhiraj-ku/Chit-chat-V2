@@ -2,6 +2,7 @@ const {
   register,
   login,
   setAvatar,
+  getAllUsers,
 } = require("../controllers/userControllers.js");
 
 const router = require("express").Router();

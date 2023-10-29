@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import chitchatlogo from "../assets/chit-chat-logo.png";
-function Contacts({ Contacts, currentUser }) {
+function Contacts({ contacts, currentUser }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currenSelected, setCurrentSelected] = useState(undefined);
@@ -15,15 +15,51 @@ function Contacts({ Contacts, currentUser }) {
   }, [currentUser]);
 
   //change currentChat
-  const changeCurrentChat = (index, contact) => {
-    setCurrentSelected(index);
-    changeChat(contact);
-  };
+  // const changeCurrentChat = (index, contact) => {
+  //   setCurrentSelected(index);
+  //   changeChat(contact);
+  // };
 
   return (
-    <Container>
-      <div className="brand">Contacts</div>
-    </Container>
+    <>
+      {currentUserImage && currentUserName && (
+        <Container>
+          <div className="brand">
+            <img src={chitchatlogo} alt="" />
+            <h3>Chit chat</h3>
+          </div>
+          <div className="contacts">
+            {contacts.map((contact, index) => {
+              return (
+                <div
+                  className={`contact ${
+                    index === currenSelected ? "selected" : ""
+                  }`}
+                  key={index}
+                >
+                  <div className="avatar">
+                    <img
+                      src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                    />
+                  </div>
+                  <div className="username">
+                    <h3>{contact.username}</h3>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="current-user">
+            <div className="avatar">
+              <img src={`data:image/svg+xml;base64,${currentUserImage}`} />
+            </div>
+            <div className="username">
+              <h1>{currentUserName}</h1>
+            </div>
+          </div>
+        </Container>
+      )}
+    </>
   );
 }
 

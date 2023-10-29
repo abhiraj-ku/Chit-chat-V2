@@ -14,7 +14,7 @@ function Chat() {
     if (!localStorage.getItem("chit-chat-user")) {
       navigate("/login");
     } else {
-      setCurrentUser(JSON.parse(localStorage.getItem("chit-chat-app")));
+      setCurrentUser(JSON.parse(localStorage.getItem("chit-chat-user")));
     }
   }, []);
 

@@ -4,40 +4,56 @@ import { useNavigate } from "react-router-dom";
 import { allUsersRoute } from "../utils/APIRoutes.js";
 import axios from "axios";
 import Contacts from "../components/Contacts";
+
 function Chat() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
-  // const [currentChat, setCurrentChat] = useState(undefined);
 
-  //getting user from localStorage session
   useEffect(() => {
-    if (!localStorage.getItem("chit-chat-user")) {
-      navigate("/login");
-    } else {
-      setCurrentUser(JSON.parse(localStorage.getItem("chit-chat-user")));
-    }
-  }, []);
-
-  //api calling
-  useEffect(() => {
-    if (currentUser) {
-      if (currentUser.isAvatarImageSet) {
-        const data = axios.get(`${allUsersRoute}/${currentUser._id}`);
-        console.log(data.data);
-        setContacts(data.data);
+    const getUserFromLocalStorage = () => {
+      const user = JSON.parse(localStorage.getItem("chit-chat-user"));
+      if (!user) {
+        navigate("/login");
       } else {
-        navigate("/setAvatar");
+        setCurrentUser(user);
       }
-    }
+    };
+
+    getUserFromLocalStorage();
   }, []);
-  const handleChatChange = (chat) => {};
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (currentUser) {
+        console.log(currentUser);
+        if (currentUser.isAvatarImageSet) {
+          try {
+            const response = await axios.get(
+              `${allUsersRoute}/${currentUser._id}`
+            );
+            console.log(response);
+            setContacts(response);
+          } catch (error) {
+            console.error("Error fetching data: ", error);
+          }
+        } else {
+          navigate("/setAvatar");
+        }
+      }
+    };
+
+    fetchData();
+  }, [currentUser, navigate]);
+
   return (
-    <Container>
-      <div className="container">
-        <Contacts contacts={contacts} currentUser={currentUser} />
-      </div>
-    </Container>
+    <>
+      <Container>
+        <div className="container">
+          <Contacts contacts={contacts} currentUser={currentUser} />
+        </div>
+      </Container>
+    </>
   );
 }
 

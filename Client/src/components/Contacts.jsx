@@ -4,7 +4,7 @@ import chitchatlogo from "../assets/chit-chat-logo.png";
 function Contacts({ contacts, currentUser }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
-  const [currenSelected, setCurrentSelected] = useState(undefined);
+  const [currentSelected, setCurrentSelected] = useState(undefined);
 
   //useEffect
   useEffect(() => {
@@ -15,7 +15,7 @@ function Contacts({ contacts, currentUser }) {
     }
   }, [currentUser]);
 
-  //change currentChat
+  // change currentChat
   // const changeCurrentChat = (index, contact) => {
   //   setCurrentSelected(index);
   //   changeChat(contact);
@@ -34,7 +34,7 @@ function Contacts({ contacts, currentUser }) {
               return (
                 <div
                   className={`contact ${
-                    index === currenSelected ? "selected" : ""
+                    index === currentSelected ? "selected" : ""
                   }`}
                   key={index}
                 >

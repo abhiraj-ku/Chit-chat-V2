@@ -43,11 +43,12 @@ export default function SetAvatar() {
         image: avatars[selectedAvatars],
       });
       console.log(data);
-      navigate("/");
+
       if (data.isSet) {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
         localStorage.setItem("chit-chat-user", JSON.stringify(user));
+        navigate("/");
       } else {
         toast.error("Error setting avatar . Please try agin", toastOptions);
       }

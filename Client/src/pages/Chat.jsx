@@ -8,6 +8,7 @@ function Chat() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
+  // const [currentChat, setCurrentChat] = useState(undefined);
 
   //getting user from localStorage session
   useEffect(() => {
@@ -23,12 +24,14 @@ function Chat() {
     if (currentUser) {
       if (currentUser.isAvatarImageSet) {
         const data = axios.get(`${allUsersRoute}/${currentUser._id}`);
+        console.log(data.data);
         setContacts(data.data);
       } else {
         navigate("/setAvatar");
       }
     }
   }, []);
+  const handleChatChange = (chat) => {};
   return (
     <Container>
       <div className="container">

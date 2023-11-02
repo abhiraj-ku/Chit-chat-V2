@@ -9,6 +9,7 @@ function Contacts({ contacts, currentUser }) {
   //useEffect
   useEffect(() => {
     if (currentUser) {
+      // console.log(currentUser);
       setCurrentUserImage(currentUser.avatarImage);
       setCurrentUserName(currentUser.username);
     }

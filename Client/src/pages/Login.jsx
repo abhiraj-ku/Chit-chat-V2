@@ -50,8 +50,8 @@ export default function Login() {
         toast.error(data.msg, toastOptions);
       }
       if (data.status === true) {
-        localStorage.setItem("chit-chat-app", JSON.stringify(data.user));
-        navigate("/");
+        localStorage.setItem("chit-chat-user", JSON.stringify(data.user));
+        navigate("/setAvatar");
       }
     }
   };

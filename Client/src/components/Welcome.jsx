@@ -13,7 +13,6 @@ export default function Welcome() {
       <img src={robot} alt="Welcome Robot" />
       <h1>
         Welcome , <span>{userName}!</span>
-        {console.log(userName)}
       </h1>
       <h3>Please select a chat to start messaging!</h3>
     </Container>

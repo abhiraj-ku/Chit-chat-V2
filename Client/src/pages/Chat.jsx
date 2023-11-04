@@ -5,12 +5,14 @@ import { allUsersRoute } from "../utils/APIRoutes.js";
 import axios from "axios";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome.jsx";
+import ChatContainer from "../components/ChatContainer.jsx";
 
 function Chat() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const getUserFromLocalStorage = () => {
@@ -19,6 +21,7 @@ function Chat() {
         navigate("/login");
       } else {
         setCurrentUser(user);
+        setIsLoaded(true);
       }
     };
 
@@ -59,7 +62,11 @@ function Chat() {
             currentUser={currentUser}
             changeChat={handleChatChange}
           />
-          <Welcome currentUser={currentUser} />
+          {isLoaded && currentChat === undefined ? (
+            <Welcome currentUser={currentUser} />
+          ) : (
+            <ChatContainer currentUser={currentUser} />
+          )}
         </div>
       </Container>
     </>

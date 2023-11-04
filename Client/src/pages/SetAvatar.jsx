@@ -42,7 +42,7 @@ export default function SetAvatar() {
       const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
         image: avatars[selectedAvatars],
       });
-      console.log(data);
+      // console.log(data);
 
       if (data.isSet) {
         user.isAvatarImageSet = true;
@@ -66,7 +66,7 @@ export default function SetAvatar() {
         if (image.status === 429) {
           const retryAfter = image.headers["retry-after"];
           if (retryAfter) {
-            console.log(retryAfter);
+            // console.log(retryAfter);
           }
         }
         data.push(buffer.toString("base64"));

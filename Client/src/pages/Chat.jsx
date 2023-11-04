@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { allUsersRoute } from "../utils/APIRoutes.js";
 import axios from "axios";
 import Contacts from "../components/Contacts";
+import Welcome from "../components/Welcome.jsx";
 
 function Chat() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentChat, setCurrentChat] = useState(undefined);
 
   useEffect(() => {
     const getUserFromLocalStorage = () => {
@@ -21,21 +23,20 @@ function Chat() {
     };
 
     getUserFromLocalStorage();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
       if (currentUser) {
-        console.log(currentUser);
         if (currentUser.isAvatarImageSet) {
           try {
             const response = await axios.get(
               `${allUsersRoute}/${currentUser._id}`
             );
-            console.log(response);
-            setContacts(response);
+            setContacts(response.data);
+            console.log(response.data);
           } catch (error) {
-            console.error("Error fetching data: ", error);
+            console.log("Error fetching data: ", error);
           }
         } else {
           navigate("/setAvatar");
@@ -44,13 +45,21 @@ function Chat() {
     };
 
     fetchData();
-  }, [currentUser, navigate]);
+  }, []);
 
+  const handleChatChange = (chat) => {
+    setCurrentChat(chat);
+  };
   return (
     <>
       <Container>
         <div className="container">
-          <Contacts contacts={contacts} currentUser={currentUser} />
+          <Contacts
+            contacts={contacts}
+            currentUser={currentUser}
+            changeChat={handleChatChange}
+          />
+          <Welcome currentUser={currentUser} />
         </div>
       </Container>
     </>

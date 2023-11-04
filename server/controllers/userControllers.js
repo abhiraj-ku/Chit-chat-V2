@@ -22,7 +22,7 @@ module.exports.register = async (req, res, next) => {
     const { username, email, password } = req.body;
     const usernameCheck = await User.findOne({ username });
     if (usernameCheck)
-      return res.json({ msg: "Username already used", status: false });
+      return res.json({ msg: "Username already exist", status: false });
     const emailCheck = await User.findOne({ email });
     if (emailCheck)
       return res.json({ msg: "Email already used", status: false });
@@ -51,13 +51,12 @@ module.exports.setAvatar = async (req, res, next) => {
       isSet: userData.isAvatarImageSet,
       image: userData.avatarImage,
     });
-  } catch (error) {
-    next(error);
+  } catch (ex) {
+    next(ex);
   }
 };
 
 //allusers api route
-
 module.exports.getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find({ _id: { $ne: req.params.id } }).select([
@@ -67,7 +66,7 @@ module.exports.getAllUsers = async (req, res, next) => {
       "_id",
     ]);
     return res.json(users);
-  } catch (error) {
-    next(error);
+  } catch (ex) {
+    next(ex);
   }
 };

@@ -17,6 +17,41 @@ function Register() {
     confirmPassword: "",
   });
 
+  //toast Options
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 5000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+
+  // useEffect hook for directing to particluar users login
+  // useEffect(() => {
+  //   if (localStorage.getItem("chit-chat-user")) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
+
+  //handleValidation for register button
+  const handleValidation = () => {
+    const { username, email, password, confirmPassword } = values;
+    if (password != confirmPassword) {
+      toast.error("Password and confirm password should be same", toastOptions);
+      return false;
+    } else if (username.length < 3) {
+      toast.error("username should be greater than 3 characters", toastOptions);
+      return false;
+    } else if (password.length < 8) {
+      toast.error("Password should be greater than 8 characters", toastOptions);
+      return false;
+    } else if (email === "") {
+      toast.error("email is required", toastOptions);
+    }
+
+    return true;
+  };
+
   //handleSubmit function
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,41 +73,6 @@ function Register() {
         navigate("/");
       }
     }
-  };
-
-  //toast Options
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 5000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: "dark",
-  };
-
-  // useEffect hook for directing to particluar users login
-  // useEffect(() => {
-  //   if (localStorage.getItem("chit-chat-user")) {
-  //     navigate("/");
-  //   }
-  // }, []);
-
-  //handleValidation for register button
-  const handleValidation = () => {
-    const { username, email, password, confirmPassword } = values;
-    if (password != confirmPassword) {
-      toast.error("Password and confirm password should be same", toastOptions);
-      return false;
-    } else if (username.length < 3) {
-      toast.error("username should be greater than 3 characters", toastOptions);
-      return false;
-    } else if (password.length < 8) {
-      toast.error("Password should be greater than 8 characters", toastOptions);
-      return false;
-    } else if (email === "") {
-      toast.error("email is required", toastOptions);
-    }
-
-    return true;
   };
 
   //onChange input actions

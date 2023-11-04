@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import chitchatlogo from "../assets/chit-chat-logo.png";
-function Contacts({ contacts, currentUser }) {
+function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -9,17 +9,16 @@ function Contacts({ contacts, currentUser }) {
   //useEffect
   useEffect(() => {
     if (currentUser) {
-      // console.log(currentUser);
       setCurrentUserImage(currentUser.avatarImage);
       setCurrentUserName(currentUser.username);
     }
   }, [currentUser]);
 
   // change currentChat
-  // const changeCurrentChat = (index, contact) => {
-  //   setCurrentSelected(index);
-  //   changeChat(contact);
-  // };
+  const changeCurrentChat = (index, contact) => {
+    setCurrentSelected(index);
+    changeChat(contact);
+  };
 
   return (
     <>
@@ -37,6 +36,7 @@ function Contacts({ contacts, currentUser }) {
                     index === currentSelected ? "selected" : ""
                   }`}
                   key={index}
+                  onClick={() => changeCurrentChat(index, contact)}
                 >
                   <div className="avatar">
                     <img

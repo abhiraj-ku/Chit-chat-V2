@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import Chatinput from "./Chatinput";
 import Logout from "./Logout";
+import Message from "./Message";
 
 export default function ChatContainer({ currentChat }) {
-  console.log(currentChat);
+  // console.log(currentChat);
+
+  const handleSendMsg = async (msg) => {};
   return (
     <>
       {currentChat && (
@@ -20,8 +24,8 @@ export default function ChatContainer({ currentChat }) {
             </div>
             <Logout />
           </div>
-          <div className="chat-messages"></div>
-          <div className="chat-input"></div>
+          <Message />
+          <Chatinput handleSendMsg={handleSendMsg} />
         </Container>
       )}
     </>

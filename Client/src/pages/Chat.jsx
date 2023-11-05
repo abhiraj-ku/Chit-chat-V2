@@ -37,7 +37,6 @@ function Chat() {
               `${allUsersRoute}/${currentUser._id}`
             );
             setContacts(response.data);
-            console.log(response.data);
           } catch (error) {
             console.log("Error fetching data: ", error);
           }
@@ -48,7 +47,7 @@ function Chat() {
     };
 
     fetchData();
-  }, []);
+  }, [currentUser, navigate]);
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
@@ -65,7 +64,7 @@ function Chat() {
           {isLoaded && currentChat === undefined ? (
             <Welcome currentUser={currentUser} />
           ) : (
-            <ChatContainer currentUser={currentUser} />
+            <ChatContainer currentChat={currentChat} />
           )}
         </div>
       </Container>

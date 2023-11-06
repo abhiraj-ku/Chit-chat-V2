@@ -2,11 +2,18 @@ import styled from "styled-components";
 import Chatinput from "./Chatinput";
 import Logout from "./Logout";
 import Message from "./Message";
-
-export default function ChatContainer({ currentChat }) {
+import axios from "axios";
+import { sendMessageRoute } from "../utils/APIRoutes";
+export default function ChatContainer({ currentChat, currentUser }) {
   // console.log(currentChat);
 
-  const handleSendMsg = async (msg) => {};
+  const handleSendMsg = async (msg) => {
+    await axios.post(sendMessageRoute, {
+      from: currentUser._id,
+      to: currentChat._id,
+      message: msg,
+    });
+  };
   return (
     <>
       {currentChat && (

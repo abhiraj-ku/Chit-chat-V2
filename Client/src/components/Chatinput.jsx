@@ -1,24 +1,29 @@
+import { useState } from "react";
+import { BsEmojiSmileFill } from "react-icons/bs";
+import { IoMdSend } from "react-icons/io";
 import styled from "styled-components";
 import Picker from "emoji-picker-react";
-import { IoMdSend } from "react-icons/io";
-import { BsEmojiSmileFill } from "react-icons/bs";
-import { useState } from "react";
-export default function Chatinput() {
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [msg, setMsg] = useState("");
 
+export default function ChatInput({ handleSendMsg }) {
+  const [msg, setMsg] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const showOrhideEmoji = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
-  const handleEmojiClick = (e, emojiObject) => {
+
+  const handleEmojiClick = (emojiObject) => {
     let message = msg;
     message += emojiObject.emoji;
-    console.log(message);
     setMsg(message);
+    console.log(message);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const sendChat = (event) => {
+    event.preventDefault();
+    if (msg.length > 0) {
+      handleSendMsg(msg);
+      setMsg("");
+    }
   };
 
   return (
@@ -29,14 +34,15 @@ export default function Chatinput() {
           {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
         </div>
       </div>
-      <form className="input-container">
+      <form className="input-container" onSubmit={(e) => sendChat(e)}>
         <input
           type="text"
-          placeholder="type your message here !"
-          value={msg}
+          placeholder="type your message here"
           onChange={(e) => setMsg(e.target.value)}
+          value={msg}
+          // onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         />
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit">
           <IoMdSend />
         </button>
       </form>
@@ -68,8 +74,7 @@ const Container = styled.div`
       }
       .emoji-picker-react {
         position: absolute;
-        top: 90px;
-        right: 0;
+        top: -350px;
         background-color: #080420;
         box-shadow: 0 5px 10px #9a86f3;
         border-color: #9a86f3;

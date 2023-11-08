@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
-const messageRoute = require("./routes/messagesRoute");
+const messagesRoute = require("./routes/messagesRoute");
 const app = express();
 
 require("dotenv").config();
@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello From backend</h1>");
 });
 app.use("/api/auth", userRoutes);
-app.use("/api/message", messageRoute);
+app.use("/api/message", messagesRoute);
 
 mongoose
   .connect(MONGODB_URL, {
@@ -25,7 +25,7 @@ mongoose
     console.log("DB Connection Successful");
   })
   .catch((err) => {
-    console.log(err.message);
+    console.log(err);
   });
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port: ${process.env.PORT}`);

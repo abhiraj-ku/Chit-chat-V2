@@ -14,6 +14,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
       message: msg,
     });
   };
+
   return (
     <>
       {currentChat && (

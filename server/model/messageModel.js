@@ -7,15 +7,17 @@ const messageSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      users: Array,
-      sender: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
+    },
+    users: Array,
+    sender: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      required: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true, // Keep the timestamps option as is
+  }
 );
 
 module.exports = mongoose.model("Messages", messageSchema);

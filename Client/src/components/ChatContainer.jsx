@@ -32,7 +32,7 @@ export default function ChatContainer({ currentChat, currentUser }) {
             </div>
             <Logout />
           </div>
-          <Message />
+          <div className="chat-messages"></div>
           <Chatinput handleSendMsg={handleSendMsg} />
         </Container>
       )}

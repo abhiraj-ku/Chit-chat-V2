@@ -1,19 +1,22 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { allUsersRoute } from "../utils/APIRoutes.js";
+import { allUsersRoute, host } from "../utils/APIRoutes.js";
 import axios from "axios";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome.jsx";
 import ChatContainer from "../components/ChatContainer.jsx";
+import { io } from "socket.io-client";
 
 function Chat() {
+  const socket = useRef();
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  //for current user
   useEffect(() => {
     const getUserFromLocalStorage = () => {
       const user = JSON.parse(localStorage.getItem("chit-chat-user"));
@@ -28,6 +31,15 @@ function Chat() {
     getUserFromLocalStorage();
   }, [navigate]);
 
+  //socket
+  useEffect(() => {
+    if (currentUser) {
+      socket.current = io(host);
+      socket.current.emit("add-user", currentUser._id);
+    }
+  }, [currentUser]);
+
+  //for contacts fetching from DB
   useEffect(() => {
     const fetchData = async () => {
       if (currentUser) {
@@ -68,6 +80,7 @@ function Chat() {
             <ChatContainer
               currentChat={currentChat}
               currentUser={currentUser}
+              socket={socket}
             />
           )}
         </div>

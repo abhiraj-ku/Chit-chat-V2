@@ -12,15 +12,17 @@ export default function ChatContainer({ currentChat, currentUser }) {
   //useEffect api for currentChat changes
   // console.log(currentChat._id);
   useEffect(() => {
-    const getmsg = async () => {
-      const response = await axios.post(getAllMessagesRoute, {
-        from: currentUser._id,
-        to: currentChat._id,
-      });
-      setMessages(response.data);
-    };
-    getmsg();
-  }, [currentUser]);
+    if (currentChat && currentChat._id) {
+      const getmsg = async () => {
+        const response = await axios.post(getAllMessagesRoute, {
+          from: currentUser._id,
+          to: currentChat._id,
+        });
+        setMessages(response.data);
+      };
+      getmsg();
+    }
+  }, [currentUser, currentChat]);
 
   // send message function
   const handleSendMsg = async (msg) => {

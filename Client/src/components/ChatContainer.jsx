@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Chatinput from "./Chatinput";
 import Logout from "./Logout";
-// import Message from "./Message";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { getAllMessagesRoute, sendMessageRoute } from "../utils/APIRoutes";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
   //state update for messages
@@ -87,9 +87,9 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
             <Logout />
           </div>
           <div className="chat-messages">
-            {messages.map((message, index) => {
+            {messages.map((message) => {
               return (
-                <div key={index}>
+                <div ref={scrollRef} key={uuidv4()}>
                   <div
                     className={`message ${
                       message.fromSelf ? "sended" : "recieved"

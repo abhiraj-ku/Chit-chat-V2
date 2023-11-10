@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
   //state update for messages
+
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
 

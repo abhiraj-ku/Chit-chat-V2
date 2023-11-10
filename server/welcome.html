@@ -1,0 +1,138 @@
+<!-- welcome.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Chit chat app backend</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #caccce;
+        color: #b17635; /* Complementary color for text */
+        text-align: center;
+        max-width: 800px;
+        margin: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        margin-inline: auto;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      p {
+        font-size: 1.2em;
+        margin-top: 10px;
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      a {
+        color: #ffd700; /* Gold color for links */
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+      }
+
+      a:hover {
+        color: #ffb300; /* Darker gold color on hover */
+      }
+
+      .project-info {
+        margin-top: 40px;
+        opacity: 0;
+        animation: fadeInUp 1s ease-in-out 0.5s forwards;
+      }
+
+      .card {
+        width: 80%;
+        max-width: 600px;
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .tech-stack,
+      .libraries-packages {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .tech-box,
+      .lib-box {
+        border: 2px solid rgb(18, 18, 18);
+        border-radius: 8px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #fff;
+        color: #3579b1; /* Text color for boxes */
+      }
+      .tech-box:hover {
+        background-color: #60e0a6;
+      }
+      .lib-box:hover {
+        background-color: #60e0a6;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to Chit Chat App Backend</h1>
+    <p>
+      Enjoy your stay! Visit the
+      <a href="http://localhost:5173/" target="_blank">frontend part</a>.
+    </p>
+
+    <div class="project-info">
+      <h2>About This Project</h2>
+      <p>
+        Chit Chat App is a real-time messaging application that allows users to
+        communicate seamlessly.
+      </p>
+      <p>Feel free to explore and start chatting!</p>
+    </div>
+
+    <div class="card tech-stack">
+      <h2>Technology Stack</h2>
+      <div class="tech-box">React</div>
+      <div class="tech-box">Node.js</div>
+      <div class="tech-box">Socket.io</div>
+      <div class="tech-box">MongoDB</div>
+    </div>
+
+    <div class="card libraries-packages">
+      <h2>Libraries and Backend Packages</h2>
+      <div class="lib-box">Axios</div>
+      <div class="lib-box">React Icons</div>
+      <div class="lib-box">Emoji Picker</div>
+      <div class="lib-box">Styled Components</div>
+      <div class="lib-box">UUID</div>
+      <div class="lib-box">Bcrypt</div>
+      <div class="lib-box">Mongoose</div>
+      <div class="lib-box">Nodemon</div>
+      <div class="lib-box">Cors</div>
+    </div>
+  </body>
+</html>

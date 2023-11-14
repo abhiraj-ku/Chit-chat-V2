@@ -112,7 +112,7 @@ function Register() {
             name="confirmPassword"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Create User</button>
+          <button type="submit">Get Started Now!</button>
           <span>
             Already have an account ? <Link to="/login">Login</Link>
           </span>

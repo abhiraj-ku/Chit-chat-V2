@@ -40,3 +40,7 @@ A real-time chat app with enhanced features and a revamped UI.
 ## Contributing
 
 Contributions are welcome! Create issues or pull requests to help us improve the app.
+
+## Follow mw on Twitter:
+
+follow on Twitter: [twitter](https://twitter.com/abhirajabhi312)

@@ -1,5 +1,5 @@
 {
-  "name": "Chit chat v2 cicd ",
+  "name":"chit-chat-app-v2-ci-cd-pipeline",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,8 +11,7 @@
     "client": "npm start --prefix client",
     "watch": "npm run server & npm run client",
     "deploy": "npm run build --prefix client && npm start --prefix server",
-    "deploy-cluster": "npm run build --prefix client && npm run cluster --prefix server",
-
+    "deploy-cluster": "npm run build --prefix client && npm run cluster --prefix server"
   },
   "keywords": [],
   "author": "",

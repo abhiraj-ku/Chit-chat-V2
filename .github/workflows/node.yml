@@ -6,12 +6,23 @@ on:
     branches: [main]
 jobs:
   build:
+    env:
+      CI: true
+      MONGO_URL: mongodb://localhost/chat
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mongodb-version: ["4.4"]
     steps:
       - uses: actions/checkout@v2
       - name: Use node js version 20
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: MongoDB in GitHub Actions
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: ${{matrix.mongodb-version}}
+
       - run: npm install
       - run: npm run build --prefix Client

@@ -20,7 +20,7 @@ export default function SetAvatar() {
   //toast Options
   const toastOptions = {
     position: "bottom-right",
-    autoClose: 5000,
+    autoClose: 6000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",

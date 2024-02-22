@@ -2,22 +2,21 @@ FROM node:lts-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 
-COPY Client/package*.json /Client
-RUN npm run install-Client --only=production
+COPY Client/package.json client/
+RUN npm run install-client --omit=dev
 
+COPY server/package.json server/
+RUN npm run install-server --omit=dev
 
-COPY server/package*.json /server
-RUN npm run install-server --only=production
-
-COPY Client/ Client/
-RUN npm run build --prefix-Client
+COPY Client/ client/
+RUN npm run build --prefix client
 
 COPY server/ server/
 
 USER node
 
-CMD [ "npm","start","--prefix","server" ]
+CMD [ "npm", "start", "--prefix", "server" ]
 
 EXPOSE 3000

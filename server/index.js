@@ -1,9 +1,12 @@
-const express = require("express");
+const app = express();
 const cors = require("cors");
+const helmet = require("helmet");
+const express = require("express");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const cookieSession = require("cookie-session");
 const userRoutes = require("./routes/userRoutes");
 const messagesRoute = require("./routes/messagesRoute");
-const app = express();
 
 const socket = require("socket.io");
 
@@ -11,6 +14,13 @@ require("dotenv").config();
 const { MONGODB_URL } = process.env;
 app.use(cors());
 app.use(express.json());
+
+// google Oauth config
+const googleConfig = {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  COOKIE_KEY,
+};
 
 // Root route with a beautiful welcome message
 app.get("/", (req, res) => {

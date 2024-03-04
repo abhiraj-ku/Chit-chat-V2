@@ -22,11 +22,8 @@ RUN npm run build --prefix Client
 # Copy all the files from the server directory
 COPY server/ server/
 
-# Expose port 5173 for the frontend
-EXPOSE 5173
-
-# Expose port 3000 for the backend (assuming it's already configured to run on port 3000)
-EXPOSE 3000
 
 # Command to run both frontend and backend servers
 CMD ["npm", "run", "start", "--prefix", "server"]
+
+EXPOSE 9000
